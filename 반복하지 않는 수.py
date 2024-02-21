@@ -77,3 +77,26 @@ if __name__ == "__main__":
 
 # # 답을 한 줄씩 출력
 # print("\n".join(ans))
+
+
+# 시간 초과
+
+# import sys
+
+# input = sys.stdin.readline  # 입력 값을 숫자로 변환
+# ans = [0]  # 정답을 모아 둘 리스트
+
+# n = 1
+# for _ in range(1, 1000000 + 1):
+#     num = str(n)
+#     while len(set(num)) != len(num):
+#         n += 1
+#         num = str(n)
+#     ans.append(num)
+#     n += 1
+
+
+# while True:  # 계속 입력을 받음
+#     if (idx := int(input())) == 0:  # 입력이 0인 경우 종료
+#         break
+#     print(ans[idx])
