@@ -4,7 +4,7 @@ from collections import deque
 
 # 오름차순 정렬후 빈칸을 사이에 두고 이어붙인 문자열 반환, 없으면 None 반환
 def sol(li: list) -> str:
-    return " ".join(map(str, sorted(li))) or "None"
+    return " ".join(map(str, sorted(map(int, li)))) or "None"
 
 
 def main():
@@ -15,9 +15,9 @@ def main():
     A, B, C = [], [], deque([])
 
     for _ in range(int(input())):
-        type_, *num = map(int, input().split())
+        type_, *num = input().split()
         # 학생 정보가 들어오면 C에 저장
-        if type_ == 1:
+        if type_ == "1":
             C.append(num)
         else:
             # deque를 사용해서 맨 앞의 원소에 대한 접근을 빠르게 함
@@ -34,3 +34,33 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# deque 사용 안하고 작성한 코드
+# import sys
+
+
+# def sol(li):
+#     return " ".join(map(str, sorted(map(int, li)))) or "None"
+
+
+# def main():
+#     input = sys.stdin.readline
+#     A, B, C, F = [], [], [], []
+#     for _ in range(int(input())):
+#         type_, *num = input().split()
+#         if type_ == "1":
+#             C.append(num)
+#         else:
+#             F.append(num[0])
+#     for i in range(n := len(F)):
+#         (a, b), f = C[i], F[i]
+#         if f == b:
+#             A.append(a)
+#         else:
+#             B.append(a)
+#     print("\n".join((sol(A), sol(B), sol((a for a, _ in C[n:])))))
+
+
+# if __name__ == "__main__":
+#     main()
