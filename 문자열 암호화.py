@@ -41,9 +41,8 @@ while True:
 print("\n".join(ans))
 
 
-# 틀린 코드
+# 슬라이싱 사용
 import sys
-from math import ceil
 
 input = sys.stdin.readline
 ans = []
@@ -51,6 +50,32 @@ while True:
     if (n := int(input())) == 0:
         break
     message = "".join(input().rstrip().split()).upper()
-    q = ceil(len(message) / n)
-    ans.append("".join((message[i::q] for i in range(q))))
+    q, r = len(message) // n, len(message) % n
+    s, e, tmp = 0, q - 1, []
+
+    for i in range(n):
+        if i < r:
+            tmp.append(message[s : e + 2])
+        else:
+            tmp.append(message[s : e + 1] + " ")
+        s = e + 1
+        e += q
+
+    for j in range(q + 1):
+        encrypted = ""
+        for i in range(n):
+            encrypted += tmp[i][j]
+    ans.append(encrypted.rstrip())
 print("\n".join(ans))
+
+
+# import sys
+# input = sys.stdin.readline
+# ans = []
+# while True:
+#     if (n := int(input())) == 0: break
+#     message = "".join(input().rstrip().split()).upper()
+#     q, r, e = len(message) // n, len(message) % n, -1
+#     tmp = [message[e + 1 : (e := e + q + bool(i < r)) + 1] + " " * bool(i >= r) for i in range(n)]
+#     ans.append("".join(("".join((tmp[i][j] for i in range(n))).rstrip() for j in range(q + 1))))
+# print("\n".join(ans))
