@@ -27,3 +27,36 @@ if __name__ == "__main__":
     input = sys.stdin.readline
     N, M = map(int, input().split())
     sys.exit(main())
+
+
+##############################
+
+# 다른 풀이
+import sys
+
+
+def main():
+    def check(line: str) -> str:
+        ans_line = [""] * 3
+        for i in range(M):
+            text = line[8 * i : 8 * (i + 1)].replace(".", "")
+            t = eval(text.replace("=", "=="))
+            if t:
+                edge = ("." + "*" * len(text)).ljust(8, ".")
+                ans_line[0] += edge
+                ans_line[1] += ("*" + text + "*").ljust(8, ".")
+                ans_line[2] += edge
+            else:
+                ans_line[0] += ".../...."
+                ans_line[1] += ("." + text.replace("+", "/")).ljust(8, ".")
+                ans_line[2] += "./......"
+        return "\n".join(ans_line)
+
+    test_paper = [check(input() * 0 + input().rstrip() + input() * 0) for _ in range(N)]
+    print("\n".join(test_paper))
+
+
+if __name__ == "__main__":
+    input = sys.stdin.readline
+    N, M = map(int, input().split())
+    main()
